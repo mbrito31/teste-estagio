@@ -1,0 +1,37 @@
+Criar um servidor em Python, com uma rota que realize uma busca textual na lista de cadastros de operadoras no arquivo relatorio_cadop.csv, arquivo este que precisamos importar para uma tabela criada no mysql. E nesta busca textual, deve retornar os registros mais relevantes. 
+
+Precisamos ter uma interface web usando Vue.js que interaja com esse nosso servidor Python, e precisamos elaborar uma coleção Postman para demonstrar esse resultado.
+
+
+
+DEU CERTO: 
+@app.route('/listar_cadastros', methods=['GET'])
+def listar_cadastros():
+    """
+    Endpoint para retornar os cadastros de operadoras.
+    Retorna os campos:
+      - REGISTRO_OPERADORA: Registro da operadora (primeira coluna)
+      - CNPJ: CNPJ da operadora (segunda coluna)
+      - RAZAO_SOCIAL: Razão Social da operadora (terceira coluna)
+    Exemplo de uso: http://127.0.0.1:5000/listar_cadastros
+    """
+    try:
+        conn = get_db_connection()  # Função que conecta ao MySQL
+        cursor = conn.cursor(dictionary=True)
+        
+        # Consulta SQL usando os nomes de coluna corretos conforme a tabela
+        query = """
+            SELECT Registro_ANS, CNPJ, Razao_Social
+            FROM operadoras_ativas
+            ORDER BY Registro_ANS;
+        """
+        cursor.execute(query)
+        resultados = cursor.fetchall()
+        
+        cursor.close()
+        conn.close()
+        
+        return jsonify(resultados)
+    
+    except Exception as e:
+        return jsonify({"erro": str(e)}), 500

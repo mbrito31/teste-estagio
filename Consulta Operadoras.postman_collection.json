@@ -1,0 +1,33 @@
+{
+	"info": {
+		"_postman_id": "486e4e07-ec14-4e5e-a613-de540f8910a5",
+		"name": "Consulta Operadoras",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "43595494",
+		"_collection_link": "https://matheusbrito-6955271.postman.co/workspace/Matheus-Brito's-Workspace~4f5272f5-4795-4cf8-8c0b-81a0a81a3112/collection/43595494-486e4e07-ec14-4e5e-a613-de540f8910a5?action=share&source=collection_link&creator=43595494"
+	},
+	"item": [
+		{
+			"name": "Buscar Operadoras",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://127.0.0.1:5000/operadoras",
+					"protocol": "http",
+					"host": [
+						"127",
+						"0",
+						"0",
+						"1"
+					],
+					"port": "5000",
+					"path": [
+						"operadoras"
+					]
+				}
+			},
+			"response": []
+		}
+	]
+}
